@@ -1,11 +1,10 @@
-FROM debian:wheezy
+FROM node:4.4.5-slim
 
-ADD node-bin /opt/node
 ADD index.js /webapp/index.js
 ADD package.json /webapp/package.json
 
 WORKDIR /webapp
-RUN /opt/node/bin/npm install
+RUN npm install && npm ddp
 
 EXPOSE 8000
-CMD [ "/opt/node/bin/node", "index.js" ]
+CMD [ "/usr/local/bin/node", "index.js" ]
